@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Racing Hub - Edukasi Formula 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Modal untuk education -->
+    <div id="educationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEducationModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="educationModalTitle" class="modal-title"></h2>
+            </div>
+            <div class="education-modal-content">
+                <img id="educationModalImage" src="" alt="" class="education-image">
+                <div id="educationModalText" class="education-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk driver -->
+    <div id="driverModal" class="modal">
+        <div id="modalContent" class="modal-content">
+            <span class="close" onclick="closeDriverModal()">&times;</span>
+            <div id="modalHeader" class="modal-header">
+                <h2 id="modalTeamName" class="modal-title"></h2>
+            </div>
+            <div id="driversShowcase" class="drivers-showcase"></div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 Logo">
+            Mamang Efwan
+        </div>
+        
+        <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="nav-link">Beranda</a></li>
+            <li><a href="#education" class="nav-link">Edukasi</a></li>
+            <li><a href="#teams" class="nav-link">Tim & Pebalap</a></li>
+            <li><a href="#video" class="nav-link">Teaser</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="image/hero/f1-hero-background.mp4" type="video/mp4">
+            <!-- Fallback ke image jika video tidak load -->
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Overlay gelap untuk readability -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 Logo" class="f1-logo">
+            <h1>FORMULA 1</h1>
+            <p>Teknologi Kecepatan Jet Darat</p>
+            <button class="cta-button" onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})">
+                Baca Selengkapnya
+            </button>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Tentang Formula 1</h2>
+        <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;"> Klik untuk membaca lebih lanjut!</p>
+        <div class="education-grid">
+            <div class="education-card" onclick="showEducation('f1')">
+                <h3>🏎️ Apa itu Formula 1?</h3>
+                <p>Formula 1 adalah kelas tertinggi balap mobil yang diatur oleh FIA (Fédération Internationale de l'Automobile). Dimulai tahun 1950, F1 merupakan puncak dari teknologi otomotif dan olahraga balap.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('hybrid')">
+                <h3>⚙️ Teknologi Hybrid Power Unit</h3>
+                <p>Mobil F1 modern menggunakan mesin V6 1.6L turbo hybrid dengan sistem ERS (Energy Recovery System) yang menghasilkan lebih dari 1000 HP. Teknologi ini memadukan efisiensi dan performa ekstrem.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('aero')">
+                <h3>🔧 Aerodinamika</h3>
+                <p>Setiap komponen mobil dirancang untuk menghasilkan downforce maksimal. Front wing, rear wing, bargeboard, dan diffuser bekerja bersama menciptakan grip yang luar biasa di tikungan berkecepatan tinggi.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('format')">
+                <h3>🏁 Format Balapan</h3>
+                <p>Weekend F1 terdiri dari 3 sesi latihan bebas (FP1, FP2, FP3), kualifikasi (Q1, Q2, Q3), dan race pada hari Minggu. Sprint Race juga diadakan di beberapa sirkuit tertentu.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('points')">
+                <h3>🎯 Sistem Poin</h3>
+                <p>Poin diberikan untuk posisi 1-10: P1=25 poin, P2=18 poin, P3=15 poin, dst. Fastest lap di race memberikan 1 poin tambahan (jika finish top 10). Juara adalah driver dengan poin terbanyak di akhir musim.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('tires')">
+                <h3>🛞 Compound Ban</h3>
+                <p>Pirelli menyediakan 5 tipe ban: C1 (hard), C2, C3 (medium), C4, C5 (soft). Setiap race menggunakan 3 compound berbeda. Ban berbeda memberikan grip dan durability yang berbeda.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('drs')">
+                <h3>🎮 DRS (Drag Reduction System)</h3>
+                <p>Sistem yang membuka rear wing untuk mengurangi drag dan meningkatkan kecepatan di straight. Hanya bisa digunakan di zona DRS tertentu saat jarak < 1 detik dari mobil depan.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('pitstop')">
+                <h3>⛽ Strategi Pit Stop</h3>
+                <p>Tim menghitung strategi pit stop optimal berdasarkan degradasi ban, track position, dan waktu. Pit stop F1 bisa selesai dalam < 2 detik! Strategi bisa 1-stop, 2-stop, atau bahkan 3-stop.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+
+            <div class="education-card" onclick="showEducation('telemetry')">
+                <h3>📡 Telemetri</h3>
+                <p>Ribuan sensor di mobil mengirim data real-time ke tim: tekanan ban, temperatur mesin, fuel load, g-force, dan banyak lagi. Data ini dianalisis engineers untuk optimasi performa.</p>
+                <div class="read-more">📖 Baca selengkapnya</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teams">
+        <h2>Tim & Pebalap Formula 1 2026</h2>
+        <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;">💡 Klik pada mobil untuk melihat detail pebalap!</p>
+        <div class="teams-grid">
+            <!-- Mercedes -->
+            <div class="team-card team-mercedes">
+                <div class="team-header">
+                    <div class="team-name">Mercedes-Petronas</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Mercedes-Petronas", "mercedes", [
+                    {name: "George Russell", number: "63", photo: "image/drivers/russel.jpg", nationality: "British", podiums: "15", wins: "3"},
+                    {name: "Kimi Antonelli", number: "12", photo: "image/drivers/kimi.jpg", nationality: "Italian", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/mercedes-26.jpg" alt="Mercedes" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">George Russell</span>
+                        <span class="driver-number">#63</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Kimi Antonelli</span>
+                        <span class="driver-number">#12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Red Bull -->
+            <div class="team-card team-redbull">
+                <div class="team-header">
+                    <div class="team-name">Red Bull Racing</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Red Bull Racing", "redbull", [
+                    {name: "Max Verstappen", number: "3", photo: "image/drivers/verstappen.jpg", nationality: "Dutch", podiums: "105", wins: "63"},
+                    {name: "Isack Hadjar", number: "6", photo: "image/drivers/hadjar.jpg", nationality: "French", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/redbull-rb20.jpg" alt="Red Bull" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Max Verstappen</span>
+                        <span class="driver-number">#3</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Isack Hadjar</span>
+                        <span class="driver-number">#6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ferrari -->
+            <div class="team-card team-ferrari">
+                <div class="team-header">
+                    <div class="team-name">Scuderia Ferrari HP</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Scuderia Ferrari HP", "ferrari", [
+                    {name: "Charles Leclerc", number: "16", photo: "image/drivers/leclrec.jpg", nationality: "Monegasque", podiums: "39", wins: "7"},
+                    {name: "Lewis Hamilton", number: "44", photo: "image/drivers/hamilton.jpg", nationality: "British", podiums: "199", wins: "105"}
+                ])'>
+                    <img src="image/cars/ferrari-sf24.jpg" alt="Ferrari" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Charles Leclerc</span>
+                        <span class="driver-number">#16</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Lewis Hamilton</span>
+                        <span class="driver-number">#44</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- McLaren -->
+            <div class="team-card team-mclaren">
+                <div class="team-header">
+                    <div class="team-name">McLaren Mastercard</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("McLaren Mastercard", "mclaren", [
+                    {name: "Lando Norris", number: "1", photo: "image/drivers/lando.jpg", nationality: "British", podiums: "23", wins: "4"},
+                    {name: "Oscar Piastri", number: "81", photo: "image/drivers/piastri.jpg", nationality: "Australian", podiums: "7", wins: "2"}
+                ])'>
+                    <img src="image/cars/mclaren-mcl38.jpg" alt="McLaren" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Lando Norris</span>
+                        <span class="driver-number">#1</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Oscar Piastri</span>
+                        <span class="driver-number">#81</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aston Martin -->
+            <div class="team-card team-aston">
+                <div class="team-header">
+                    <div class="team-name">Aston Martin Aramco</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Aston Martin Aramco", "aston", [
+                    {name: "Fernando Alonso", number: "14", photo: "image/drivers/alonso.jpg", nationality: "Spanish", podiums: "106", wins: "32"},
+                    {name: "Lance Stroll", number: "18", photo: "image/drivers/stroll.jpg", nationality: "Canadian", podiums: "3", wins: "0"}
+                ])'>
+                    <img src="image/cars/astonmartin-amr24.jpg" alt="Aston Martin" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Fernando Alonso</span>
+                        <span class="driver-number">#14</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Lance Stroll</span>
+                        <span class="driver-number">#18</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alpine -->
+            <div class="team-card team-alpine">
+                <div class="team-header">
+                    <div class="team-name">BWT Alpine F1 Team</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("BWT Alpine F1 Team", "alpine", [
+                    {name: "Pierre Gasly", number: "10", photo: "image/drivers/gasly.jpg", nationality: "French", podiums: "4", wins: "1"},
+                    {name: "Franco Colapinto", number: "43", photo: "image/drivers/colapinto.jpg", nationality: "Argentine", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/alpine-a524.jpg" alt="Alpine" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Pierre Gasly</span>
+                        <span class="driver-number">#10</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Franco Colapinto</span>
+                        <span class="driver-number">#43</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Williams -->
+            <div class="team-card team-williams">
+                <div class="team-header">
+                    <div class="team-name">Atlassian Williams</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Atlassian Williams", "williams", [
+                    {name: "Alex Albon", number: "23", photo: "image/drivers/albon.jpg", nationality: "Thai", podiums: "2", wins: "0"},
+                    {name: "Carlos Sainz", number: "55", photo: "image/drivers/sainz.jpg", nationality: "Spanish", podiums: "26", wins: "4"}
+                ])'>
+                    <img src="image/cars/williams-fw46.jpg" alt="Williams" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Alex Albon</span>
+                        <span class="driver-number">#23</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Carlos Sainz</span>
+                        <span class="driver-number">#55</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Haas -->
+            <div class="team-card team-haas">
+                <div class="team-header">
+                    <div class="team-name">TGR Haas</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("TGR Haas", "haas", [
+                    {name: "Esteban Ocon", number: "31", photo: "image/drivers/ocon.jpg", nationality: "French", podiums: "3", wins: "1"},
+                    {name: "Ollie Bearman", number: "87", photo: "image/drivers/bearman.jpg", nationality: "British", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/haas-vf24.jpg" alt="Haas" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Esteban Ocon</span>
+                        <span class="driver-number">#31</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Ollie Bearman</span>
+                        <span class="driver-number">#87</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RB -->
+            <div class="team-card team-rb">
+                <div class="team-header">
+                    <div class="team-name">Visa Cash App RB</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Visa Cash App RB", "rb", [
+                    {name: "Liam Lawson", number: "30", photo: "image/drivers/lawson.jpg", nationality: "New Zealand", podiums: "0", wins: "0"},
+                    {name: "Arvin Lindblad", number: "41", photo: "image/drivers/lindblad.jpg", nationality: "British", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/rb-vcarb01.jpg" alt="RB" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Liam Lawson</span>
+                        <span class="driver-number">#30</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Arvin Lindblad</span>
+                        <span class="driver-number">#41</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audi -->
+            <div class="team-card team-sauber">
+                <div class="team-header">
+                    <div class="team-name">Audi Revolut</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Audi Revolut", "sauber", [
+                    {name: "Gabriel Bortoletto", number: "5", photo: "image/drivers/bortoletto.jpg", nationality: "Brazilian", podiums: "0", wins: "0"},
+                    {name: "Nico Hulkenberg", number: "27", photo: "image/drivers/hulkenberg.jpg", nationality: "German", podiums: "0", wins: "0"}
+                ])'>
+                    <img src="image/cars/1Audi.jpg" alt="Audi" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Gabriel Bortoletto</span>
+                        <span class="driver-number">#5</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Nico Hulkenberg</span>
+                        <span class="driver-number">#27</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cadillac -->
+            <div class="team-card team-cadillac">
+                <div class="team-header">
+                    <div class="team-name">Cadillac</div>
+                </div>
+                <div class="car-container" onclick='showDrivers("Cadillac", "cadillac", [
+                    {name: "Sergio Perez", number: "11", photo: "image/drivers/perez.jpg", nationality: "Mexican", podiums: "39", wins: "6"},
+                    {name: "Valtteri Bottas", number: "77", photo: "image/drivers/bottas.jpg", nationality: "Finnish", podiums: "67", wins: "10"}
+                ])'>
+                    <img src="image/cars/cadillac.jpg" alt="Cadillac" class="f1-car-img">
+                    <div class="click-hint">🖱️ Klik untuk lihat driver</div>
+                </div>
+                <div class="drivers">
+                    <div class="driver">
+                        <span class="driver-name">Sergio Perez</span>
+                        <span class="driver-number">#11</span>
+                    </div>
+                    <div class="driver">
+                        <span class="driver-name">Valtteri Bottas</span>
+                        <span class="driver-number">#77</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <h2>F1 Teaser</h2>
+        <div class="video-container">
+            <div class="video-thumbnail" onclick="window.open('https://youtu.be/tyw8etDrQ-c', '_blank')">
+                <img src="https://img.youtube.com/vi/tyw8etDrQ-c/maxresdefault.jpg" alt="DTS Thumbnail">
+                <div class="play-button-overlay">
+                    <div class="play-icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h3>Formula 1: Drive to Survive</h3>
+            <p>Saksikan drama, teknologi, dan kecepatan Formula 1 dalam dokumenter Netflix yang fenomenal. Series ini mengungkap sisi manusiawi dari para pebalap, strategi tim, dan persaingan sengit di balik kemudi mobil F1 tercepat di dunia.</p>
+            
+            <button class="cta-button" style="margin-top: 1rem;" onclick="window.open('https://youtu.be/tyw8etDrQ-c', '_blank')">
+                Buka di Aplikasi YouTube ↗
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 F1 Racing - Mamang Efwan</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Dibuat untuk para penggemar F1 | Data tim & pebalap musim 2026
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
